@@ -1,0 +1,411 @@
+/* OASIS — site de présentation
+   Identité : logo bleu/vert, police Oasis, palette apaisée (bleu pétrole, turquoise, vert doux) */
+
+@font-face {
+    font-family: "Oasis";
+    src: url("../fonts/Oasis-Bold.woff") format("woff"),
+         url("../fonts/Oasis-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --petrole: #145783;
+    --bleu: #2478ad;
+    --turquoise: #2996ae;
+    --vert: #68aa7b;
+    --vert-fonce: #4c9b76;
+    --encre: #173b55;
+    --gris: #5a7180;
+    --creme: #f7fbfa;
+    --sable: #e3f1ee;
+    --bord: #d6e4ed;
+    --blanc: #ffffff;
+
+    --titre: "Oasis", "Trebuchet MS", system-ui, sans-serif;
+    --texte: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    --rayon: 22px;
+    --ombre: 0 10px 30px rgba(20, 87, 131, .10);
+    --largeur: 1140px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+    margin: 0;
+    font-family: var(--texte);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--encre);
+    background: var(--creme);
+    -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--bleu); }
+a:hover { color: var(--petrole); }
+
+h1, h2, h3 {
+    font-family: var(--titre);
+    font-weight: 700;
+    color: var(--petrole);
+    line-height: 1.15;
+    margin: 0 0 .5em;
+    letter-spacing: .005em;
+}
+h1 { font-size: clamp(2.1rem, 4.6vw, 3.4rem); }
+h2 { font-size: clamp(1.7rem, 3.2vw, 2.4rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; }
+
+.conteneur {
+    width: min(var(--largeur), 100% - 32px);
+    margin-inline: auto;
+}
+
+.surtitre {
+    display: inline-block;
+    font-family: var(--titre);
+    font-size: .85rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-bottom: .9rem;
+}
+
+.lien-evitement {
+    position: absolute;
+    left: -9999px;
+}
+.lien-evitement:focus {
+    left: 16px; top: 12px; z-index: 100;
+    background: var(--blanc); padding: 8px 14px; border-radius: 8px;
+}
+
+/* ---------- Boutons ---------- */
+.bouton {
+    display: inline-flex;
+    align-items: center;
+    gap: .5em;
+    padding: .85em 1.5em;
+    border-radius: 999px;
+    font-family: var(--titre);
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.bouton-principal {
+    background: var(--bleu);
+    color: var(--blanc);
+    box-shadow: 0 6px 16px rgba(36, 120, 173, .28);
+}
+.bouton-principal:hover { background: var(--petrole); color: var(--blanc); transform: translateY(-1px); }
+.bouton-secondaire {
+    background: var(--blanc);
+    color: var(--petrole);
+    border: 2px solid var(--bord);
+}
+.bouton-secondaire:hover { border-color: var(--turquoise); color: var(--petrole); }
+.bouton:focus-visible { outline: 3px solid var(--turquoise); outline-offset: 3px; }
+
+/* ---------- En-tête ---------- */
+.entete {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, .94);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--bord);
+}
+.entete .conteneur {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 72px;
+}
+.entete-logo img { height: 46px; width: auto; }
+.navigation { display: flex; align-items: center; gap: 26px; }
+.navigation a {
+    font-family: var(--titre);
+    font-size: .98rem;
+    color: var(--encre);
+    text-decoration: none;
+}
+.navigation a:hover { color: var(--bleu); }
+.navigation .bouton { padding: .6em 1.2em; color: var(--blanc); }
+
+/* ---------- Héros ---------- */
+.heros {
+    position: relative;
+    background: linear-gradient(180deg, var(--blanc) 0%, var(--creme) 45%, var(--sable) 100%);
+    padding: 72px 0 0;
+    overflow: hidden;
+}
+.heros-grille {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    align-items: center;
+    gap: 48px;
+}
+.heros .accroche {
+    font-size: 1.2rem;
+    color: var(--gris);
+    max-width: 34em;
+}
+.heros-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.vagues { display: block; width: 100%; height: auto; margin-top: 40px; }
+
+/* Maquette de l'application (données fictives), reprend le style réel d'OASIS */
+.maquette {
+    position: relative;
+    margin: 0;
+    border-radius: 18px;
+    background: var(--blanc);
+    border: 1px solid var(--bord);
+    box-shadow: 0 24px 60px rgba(20, 87, 131, .18);
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 1.4;
+}
+.maquette::before {
+    content: "";
+    position: absolute;
+    inset: auto -30% -40% auto;
+    width: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(104, 170, 123, .16), transparent 70%);
+    pointer-events: none;
+}
+.maquette-barre { display: flex; gap: 6px; padding: 10px 14px; background: var(--sable); }
+.maquette-barre span { width: 9px; height: 9px; border-radius: 50%; background: #b9d3dc; }
+.maquette-entete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    border-bottom: 3px solid #58a8c1;
+}
+.maquette-entete img { height: 26px; width: auto; }
+.maquette-menu { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+.maquette-menu span {
+    padding: 4px 8px;
+    border-radius: 5px;
+    background: var(--bleu);
+    color: var(--blanc);
+    font-family: var(--titre);
+    font-size: 10px;
+}
+.maquette-corps { padding: 16px 16px 18px; background: linear-gradient(135deg, #f8fbfd 0%, #e7f1f6 100%); }
+.maquette-titre { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.maquette-titre strong { font-family: var(--titre); color: var(--petrole); font-size: 15px; }
+.maquette-boutons { display: grid; gap: 5px; justify-items: end; }
+.maquette-urgence, .maquette-astreinte {
+    padding: 5px 9px;
+    border-radius: 5px;
+    font-family: var(--titre);
+    font-size: 10px;
+    white-space: nowrap;
+}
+.maquette-urgence { background: #b36355; color: var(--blanc); }
+.maquette-astreinte { background: #e3e8ec; color: var(--encre); }
+.maquette-alerte { margin: 10px 0 8px; font-family: var(--titre); color: var(--petrole); font-size: 12.5px; }
+.maquette table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--blanc);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(20, 87, 131, .07);
+}
+.maquette th {
+    background: var(--bleu);
+    color: var(--blanc);
+    text-align: left;
+    padding: 7px 8px;
+    font-family: var(--titre);
+    font-size: 11px;
+}
+.maquette td { padding: 8px; border-bottom: 1px solid #e1e9f0; vertical-align: top; color: var(--encre); }
+.maquette tr:last-child td { border-bottom: 0; }
+.maquette figcaption {
+    padding: 7px 14px;
+    font-size: 11px;
+    color: var(--gris);
+    background: var(--creme);
+    border-top: 1px solid var(--bord);
+    text-align: right;
+}
+
+/* ---------- Sections ---------- */
+.section { padding: 88px 0; }
+.section-claire { background: var(--blanc); }
+.section-entete { max-width: 46em; margin-bottom: 44px; }
+.section-entete p { color: var(--gris); font-size: 1.1rem; }
+
+/* Approche terrain */
+.approche-grille {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+.metiers { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; padding: 0; margin: 0; }
+.metiers li {
+    padding: .5em 1em;
+    border-radius: 999px;
+    background: var(--sable);
+    color: var(--petrole);
+    font-family: var(--titre);
+    font-size: .95rem;
+}
+.valeurs { display: grid; gap: 18px; }
+.valeur {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 16px;
+    padding: 20px;
+    border-radius: var(--rayon);
+    background: var(--creme);
+    border: 1px solid var(--bord);
+}
+.valeur h3 { margin-bottom: .25em; }
+.valeur p { margin: 0; color: var(--gris); }
+
+.pastille {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 16px 6px 16px 6px;
+    background: linear-gradient(135deg, var(--bleu), var(--turquoise));
+    color: var(--blanc);
+}
+.pastille svg { width: 26px; height: 26px; }
+.pastille-verte { background: linear-gradient(135deg, var(--turquoise), var(--vert)); }
+
+/* Fonctionnalités */
+.cartes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+.carte {
+    padding: 28px;
+    border-radius: var(--rayon);
+    background: var(--blanc);
+    border: 1px solid var(--bord);
+    box-shadow: var(--ombre);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.carte:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(20, 87, 131, .14); }
+.carte .pastille { margin-bottom: 18px; }
+.carte p { color: var(--gris); margin: 0; }
+
+/* Sécurité */
+.securite {
+    position: relative;
+    background: linear-gradient(135deg, var(--petrole) 0%, var(--bleu) 60%, var(--turquoise) 100%);
+    color: var(--blanc);
+}
+.securite h2, .securite h3 { color: var(--blanc); }
+.securite .surtitre { color: #bfe3d0; }
+.securite .section-entete p { color: rgba(255, 255, 255, .85); }
+.garanties {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.garantie {
+    padding: 24px;
+    border-radius: var(--rayon);
+    background: rgba(255, 255, 255, .10);
+    border: 1px solid rgba(255, 255, 255, .22);
+}
+.garantie svg { width: 30px; height: 30px; color: #bfe3d0; margin-bottom: 12px; }
+.garantie p { margin: 0; color: rgba(255, 255, 255, .88); font-size: 1rem; }
+
+/* Contact */
+.contact-bloc {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 40px;
+    align-items: center;
+    padding: 48px;
+    border-radius: 32px 10px 32px 10px;
+    background: var(--blanc);
+    border: 1px solid var(--bord);
+    box-shadow: var(--ombre);
+}
+.contact-bloc p { color: var(--gris); }
+.contact-actions { display: grid; gap: 14px; justify-items: start; }
+.contact-actions .adresse-courriel {
+    font-family: var(--titre);
+    font-size: 1.1rem;
+    color: var(--petrole);
+    text-decoration: none;
+}
+
+/* Pied de page */
+.pied {
+    background: var(--encre);
+    color: rgba(255, 255, 255, .8);
+    padding: 40px 0;
+    font-size: .95rem;
+}
+.pied .conteneur {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.pied a { color: rgba(255, 255, 255, .9); }
+.pied a:hover { color: var(--blanc); }
+.pied-marque { font-family: var(--titre); font-size: 1.4rem; color: var(--blanc); letter-spacing: .04em; }
+.pied-liens { display: flex; gap: 22px; flex-wrap: wrap; }
+
+/* Pages légales */
+.page-legale { padding: 64px 0 88px; }
+.page-legale .conteneur { max-width: 820px; }
+.page-legale h2 { font-size: 1.5rem; margin-top: 2em; }
+.page-legale dl { display: grid; grid-template-columns: 220px 1fr; gap: 8px 20px; margin: 0; }
+.page-legale dt { font-weight: 600; color: var(--petrole); }
+.page-legale dd { margin: 0; }
+.a-completer {
+    background: #fff2c4;
+    border-radius: 4px;
+    padding: 0 .3em;
+}
+
+/* ---------- Adaptation écrans ---------- */
+@media (max-width: 960px) {
+    .cartes { grid-template-columns: repeat(2, 1fr); }
+    .garanties { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+    .navigation a:not(.bouton) { display: none; }
+    .entete-logo img { height: 38px; }
+    .heros { padding-top: 44px; }
+    .heros-grille, .approche-grille, .contact-bloc { grid-template-columns: 1fr; }
+    .maquette-menu span:nth-child(n+3), .col-salarie { display: none; }
+    .section { padding: 64px 0; }
+    .cartes, .garanties { grid-template-columns: 1fr; }
+    .contact-bloc { padding: 28px 22px; }
+    .page-legale dl { grid-template-columns: 1fr; }
+    .page-legale dt { margin-top: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+}
